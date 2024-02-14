@@ -1,0 +1,277 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+  <div role="alert" aria-live="assertive" aria-atomic="true" class="toast  top-0 end-0" data-bs-autohide="false" style="position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index: 1000;"
+        >
+        <div class="toast-header bg-secondary">
+
+            <strong class="me-auto"style="font-size: 18px; color: white;">提示!</strong>
+
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"style="font-size: 20px; padding: 20px;">
+            點擊寶可夢圖片可以查看介紹!!
+        </div>
+    </div>
+
+
+
+
+  <a href="../" style="position: fixed; bottom: 10px; right: 10px;display: flex ;justify-items: center;flex-direction: column; align-items: center;text-decoration: none;"><img src="./img/home.png" alt="home" style="width: 70px; margin-bottom: -20px;"><br>main menu</a>
+  <div>
+    <button type="button" class="btn btn-secondary" id="btnfloat"onclick="reload()">重新開始</button>
+    <h1 id="point" >剩餘回合數:50 </h1>
+    <div class="progress" id="PG">
+      <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0"
+        aria-valuemax="100"></div>
+
+    </div>
+  </div>
+
+  <div id="body">
+    <div id='leaderboard' style="text-align: center;">
+      <h1>排行榜</h1>
+      <div id="leaderboardlist"
+        style="margin-top: -30px; background-color: rgb(255,228,196,0.7); width: 100%; height: 600px;border-radius: 30px;">
+        <h2></h2>
+      </div>
+
+    </div>
+    <section class="memory-game">
+      <div class="memory-card" data-framework="M-W">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/cf47f9fac4ed3037ff2a8ea83204e32aff8fb5f3.png"
+          alt="妙蛙種子" data-pokemon="poke001" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="M-W">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/3245e4f8c04aa0619cb31884dbf123c6918b3700.png"
+          alt="妙蛙草" data-pokemon="poke002" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="M-W">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/0186d64c5773c8d3d03cd05dc79574b2d2798d4f.png"
+          alt="妙蛙花" data-pokemon="poke003" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="H-L">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/d0ee81f16175c97770192fb691fdda8da1f4f349.png"
+          alt="小火龍" data-pokemon="poke004" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="H-L">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/285395ca77d82861fd30cea64567021a50c1169c.png"
+          alt="火恐龍" data-pokemon="poke005" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="H-L">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/2050f1fd1283f473d7d048f8631712e7e003f802.png"
+          alt="噴火龍" data-pokemon="poke006" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="J-N">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/5794f0251b1180998d72d1f8568239620ff5279c.png"
+          alt="傑尼龜" data-pokemon="poke007" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="J-N">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/a3bc17e6215031332462cc64e59b7922ddd14b91.png"
+          alt="卡咪龜" data-pokemon="poke008" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="J-N">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/2fe157db59153af8abd636ab03c7df6f28b08242.png"
+          alt="水箭龜" data-pokemon="poke009" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="B-B">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/0e7c6e616404c683f00701b591eeab56e465641a.png"
+          alt="波波" data-pokemon="poke016" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="B-B">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/a2935587b7c61e6e6da88da3578d700c133246e5.png"
+          alt="比比鳥" data-pokemon="poke017" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="B-B">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/01e13954dff668c1420407c98b308c81b83f6dda.png"
+          alt="大比鳥" data-pokemon="poke018" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="W-S">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/8e8d47c5af6084904793496ddddb3e5f516e79f7.png"
+          alt="蚊香蝌蚪" data-pokemon="poke060" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="W-S">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/7e16ace7443d45cc1def215c8cf82beefc69041c.png"
+          alt="蚊香君" data-pokemon="poke061" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="W-S">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/da2fce266d1c13743742451617b2976d6bfd483d.png"
+          alt="蚊香泳士" data-pokemon="poke062" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="K-C">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/5d05e6f2393a6a72fb36da26a79fd3db95ae7412.png"
+          alt="凱西" data-pokemon="poke063" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="K-C">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/96613b8fe63edfdf800cde823078fadc6ea9aae9.png"
+          alt="勇基拉" data-pokemon="poke064" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="K-C">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/265d42cf68deea0a54dacf3a4f1953198f55ad53.png"
+          alt="胡地" data-pokemon="poke065" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="L-B">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/47ae88a63c66e32e957da303ad50b72268e097e4.png"
+          alt="喇叭芽" data-pokemon="poke069" data-stage="1" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="L-B">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/b19541cee78bc2a00eb3f59f7a2fcca67469eb78.png"
+          alt="口呆花" data-pokemon="poke070" data-stage="2" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="L-B">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/f010b09344a212ecb98c6f209233c0661db0e7a8.png"
+          alt="大食花" data-pokemon="poke071" data-stage="3" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="PIKA">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/2b3f6ff00db7a1efae21d85cfb8995eaff2da8d8.png"
+          alt="皮卡丘" data-pokemon="poke025" data-stage="10" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="PIKA">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/9c28defa939e230800ec0d0c421d9f82c60df77a.png"
+          alt="雷丘" data-pokemon="poke026" data-stage="20" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="FOX">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/f285c634efd141918f6ad066a6f59c20746d9050.png"
+          alt="六尾" data-pokemon="poke037" data-stage="10" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+      <div class="memory-card" data-framework="FOX">
+        <img class="front-face"
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/cc96e6a4eee980724ebd725bb8785334d3290074.png"
+          alt="九尾" data-pokemon="poke038" data-stage="20" />
+        <img class="back-face" src="img/backcard.png" alt="Memory Card" />
+      </div>
+    </section>
+    <div class="gameRule">
+      <h1>遊戲規則</h1>
+      <h3 id="rule">&emsp;此遊戲一回合最多翻開三張牌，必須在其間成功翻出同一個進化鍊的所有寶可夢完成配對(三個或兩個)，若沒有配對成功則會蓋起來，將25張牌都配對完成後即可獲得勝利！<br>
+        EX: <br><img
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/2b3f6ff00db7a1efae21d85cfb8995eaff2da8d8.png"
+          style="width: 47%; display: inline-block;">
+        <img
+          src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/9c28defa939e230800ec0d0c421d9f82c60df77a.png"
+          style="width: 47%; display: inline-block;">
+        皮卡丘與雷丘是同一進化鏈，同時翻開後即可配對。
+      </h3>
+    </div>
+
+
+    <div class="info-title">
+      <button type="button" class="btn-close" aria-label="Close" style="margin-left: auto; display: inline-block;"
+        onclick="closeInfo()"></button>
+      <h4 style="margin-left: -10px; display: inline-block;" class="pokeID">#1妙蛙草</h4>
+      <img class="pokemon" id="pokeInfoImg"
+        src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/3245e4f8c04aa0619cb31884dbf123c6918b3700.png"
+        alt="" ;>
+      <div class="attributes">屬性:毒/草</div>
+      <div style="font-weight: bolder;">
+        介紹
+      </div>
+      <div class="info"> &emsp;下盤為了支撐背上的花苞而變得強韌。當待在太陽底下一動也不動的時間變長，就表示大朵的花即將盛開。</div>
+      <div style="display: flex;flex-direction: row; align-items: center;">
+        <figure id="fig1">
+          <img
+            src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/cf47f9fac4ed3037ff2a8ea83204e32aff8fb5f3.png"
+            alt="" class="befor">
+          <figcaption id="info1">退化</figcaption>
+        </figure>
+        <figure id="fig2">
+          <img
+            src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/cf47f9fac4ed3037ff2a8ea83204e32aff8fb5f3.png"
+            alt="" class="after">
+          <figcaption id="info2">進化</figcaption>
+        </figure>
+
+        
+
+      </div>
+      
+      <script src="./script.js"></script>
+</body>
+
+</html>
